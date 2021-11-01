@@ -3,12 +3,8 @@
     header("Content-Type:text/html;charset=UTF-8");
     include 'includes/autoloader.php';
 
-    if($_GET['option']) {
-        $class = trim(strip_tags($_GET['option']));
-    }
-    else {
-        $class = 'AuthPageContr';	
-    }
+
+    $class = 'AuthPageContr';	
 
     if(class_exists($class)) {
 		$obj = new $class;
@@ -24,11 +20,11 @@
         $password = $_POST['password'];
         $auth = new AuthController($login, $password);
         if($auth->authUser() == true) {
-            echo 'sign in successful'; 
+            $class = new TodoController();
         } 
         else if ($auth->signupUser() == true) {
             $auth->authUser();
-            echo 'sign up successful';
+            $class = new TodoController();
         } 
         else {
             echo 'auth failed';
