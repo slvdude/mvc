@@ -21,10 +21,13 @@
         $auth = new AuthController($login, $password);
         if($auth->authUser() == true) {
             $class = new TodoController();
+            $user = $_SESSION['user_id'];
+            $class = new TodoController($user);
         } 
         else if ($auth->signupUser() == true) {
             $auth->authUser();
-            $class = new TodoController();
+            $user = $_SESSION['user_id'];
+            $class = new TodoController($user);
         } 
         else {
             echo 'auth failed';
