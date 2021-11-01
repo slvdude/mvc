@@ -1,6 +1,6 @@
 <?php
     class AuthPageContr {
         public function getAuthForm() {
-            include 'views/authForm.php';
+            include 'views/views.inc.php';
         }
     }

@@ -10,7 +10,7 @@
         }
 
         public function signupUser() {
-            if($this->inputEmpty() == true) {
+            if($this->inputNotEmpty() == true) {
                 $userSet = $this->setUser($this->login, $this->password);
                 return $userSet;
             }
@@ -23,7 +23,7 @@
             return $this->userExist($this->login, $this->password);
         }
         
-        private function inputEmpty() {
+        private function inputNotEmpty() {
             $isEmpty = true;
             if(empty($this->login) || empty($this->password)) {
                 $isEmpty = false;
