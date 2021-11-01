@@ -1,40 +1,37 @@
 <?php 
     session_start();
+    header("Content-Type:text/html;charset=UTF-8");
     include 'includes/autoloader.php';
+
+    if($_GET['option']) {
+        $class = trim(strip_tags($_GET['option']));
+    }
+    else {
+        $class = 'AuthPageContr';	
+    }
+
+    if(class_exists($class)) {
+		$obj = new $class;
+		$obj->getAuthForm();
+	}
+	else {
+		exit("<p>Нет данных для входа</p>");
+	}
+
     if(isset($_POST['submit'])) {
+        //Log/reg
         $login = $_POST['login'];
         $password = $_POST['password'];
         $auth = new AuthController($login, $password);
         if($auth->authUser() == true) {
-            echo 'log in';
+            echo 'sign in successful'; 
         } 
         else if ($auth->signupUser() == true) {
             $auth->authUser();
-            echo 'sign up and log in'; 
+            echo 'sign up successful';
         } 
         else {
-            echo 'error';
+            echo 'auth failed';
         }
     }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div class="container">
-        <div class="form-container">
-            <form action="index.php" method="post">
-                <h2>Sign in</h2>
-                <input type="text" name="login" placeholder="Login"><br>
-                <input type="password" name="password" placeholder="Password"><br>
-                <button type="submit" name="submit">Sign in</button><br>
-            </form>
-        </div>
-    </div>
-</body>
-</html>
