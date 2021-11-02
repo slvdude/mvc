@@ -1,12 +1,15 @@
 <?php
 
     class TodoController extends Todo {
-        public $id;
+        public $userId;
         public $todo;
+
         public function __construct($id) {
-            $this->getTodoView();
-            $this->id = $id;
-            $this->getTodosByUserId($id);
+            $this->userId = $id;
+        }
+
+        public function getAllTodos() {
+            return $this->getTodosByUserId($this->userId);
         }
 
         public function getTodoView() {

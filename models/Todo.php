@@ -1,12 +1,7 @@
 <?php
 
 class Todo extends Dbh {
-    public $userId;
-
-    public function __construct($userId) {
-        $this->userId = $userId;
-    }
-
+    
     public function createTodo($userId, $title) {
        $stmt = $this->connect()->prepare('INSERT INTO tasks (`user_id`, `description`, `status`) VALUES (?, ?, ?);');
        $stmt->execute(array($userId, $title , 0));
