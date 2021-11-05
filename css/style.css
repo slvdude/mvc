@@ -1,19 +1,193 @@
-form {
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+    list-style: none;
+}
+
+body {
+    background: linear-gradient(to right, #141e30, #243b55);
+}
+
+.container {
+    max-width: 1140px; 
+    margin: 0 auto;    
+}
+
+.container h2 {
+    margin-top: 20px;
     text-align: center;
+    text-transform: uppercase;
+    color: #fff;
+} 
+
+.formContainer {
+    margin: 0 auto;
+    margin-top: 50px;
+    width: 400px;
+    height: 400px;
+    background: rgba(52, 73, 94,0.5);
+}
+
+.authForm {
+    padding-top: 90px;
+    text-align: center;   
+}
+
+
+.authInput {
+    width: 300px;
+    height: 35px;
+}
+
+.authBtn {
+    width: 150px;
+    height: 30px;
+    font-size: 17px;
+    font-weight: bold;
+    text-align: center;
+    background: rgba(74, 105, 189,1.0);
+    transition: 0.6s ease;
+    cursor: pointer; 
+}
+
+.authBtn:hover {
+    background: #fff;
+    color: rgba(74, 105, 189,1.0); 
+}
+
+.authInput, .authBtn {
+    margin-top: 15px;
+    outline: none;
+    border: none;
+    border-radius: 6px;
+}
+
+.handleContainer {
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+
+.title {
+    margin: 20px;
+    text-align: center;
+    color: #fff;   
+}
+
+.createTask {
+    display: flex;
+    justify-content: space-around;
+    margin: 10px;
+}
+
+.addTask {
+    width: 225px;
+    height: 40px;
+    text-align: center;
+    border-radius: 6px;
+    background-color:rgba(74, 105, 189,1.0);
+    color: #000;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer ; 
+}
+.addTask:hover {
+    background: #fff;
+    color: rgba(74, 105, 189,1.0);
+}
+
+.handleBtns {
+    display: flex;
+}
+
+.handleTask {
+    width: 160px;
+    height: 40px;
+    margin: 10px;
+    border: 3px solid black;
+    color: #000;
+    background-color: #fff;
+    text-align: center;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.todoContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;    
 }
 
 .round {
     width: 100px;
     height: 100px;
-    background: #fff;
+    background: rgba(red, green, blue, 0);
     border: 10px solid red;
     border-radius: 100%;
 }
 
+.inputTask {
+    border: 2px solid black;
+    width: 335px;
+    height: 40px;
+    padding: 15px;
+    outline: none;
+}
+
+.description {
+    margin: 10px;
+    font-size: 40px;
+    color: #fff;
+}
+
+.btnContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.btnContainer button {
+    width: 160px;
+    height: 40px;
+    margin: 10px;
+    border: 3px solid black;
+    color: #000;
+    background-color: #fff;
+    text-align: center;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
 .done {
-    border: 10px solid rgb(190, 211, 190);
+    border: 10px solid rgb(26, 148, 26);
     width: 100px;
     height: 100px;
-    background: #fff;
+    background: rgba(red, green, blue, 0);
     border-radius: 100%;
+}
+
+.logoutContainer {
+    display: block;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.logoutContainer button {
+    border: none;
+    outline: none;
+    width: 100px;
+    height: 30px;
+    cursor: pointer;
+    border-radius: 3px;
 }
