@@ -10,7 +10,7 @@
         public function signupUser($login, $password) {
             if($this->inputEmpty() == false) {
                 if($this->setUser($login, $password) == true) {
-                    header('Location: index.php?controller=TodoController&action=getTodoView');
+                    $this->authUser();
                 }
                 else {
                     header('Location: index.php?error=login-exist');
@@ -32,8 +32,7 @@
         }
 
         public function logout() {
-            unset($_SESSION['user_id']);
-            header('Location: index.php?controller=AuthController&action=getForm');
+            header('Location: index.php');
         }
         
         private function inputEmpty() {
