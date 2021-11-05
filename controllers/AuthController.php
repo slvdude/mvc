@@ -1,32 +1,45 @@
 <?php 
 
     class AuthController extends Auth {
-        private $login;
-        private $password;
 
-        public function __construct($login, $password) {
-            $this->login = $login;
-            $this->password = $password;
+        public function getForm() {
+            include 'views/body.php';
+            include 'views/authForm.php';
         }
 
-        public function signupUser() {
-            if($this->inputNotEmpty() == true) {
-                $userSet = $this->setUser($this->login, $this->password);
-                return $userSet;
-            }
-            else {
-                header("Location: ../index.php?error=inputempty");
+        public function signupUser($login, $password) {
+            if($this->inputEmpty() == false) {
+                if($this->setUser($login, $password) == true) {
+                    header('Location: index.php?controller=TodoController&action=getTodoView');
+                }
+                else {
+                    header('Location: index.php?error=login-exist');
+                }
+            } else {
+                header('Location: index.php?error=input-empty');
             }
         }
 
         public function authUser() {
-            return $this->userExist($this->login, $this->password);
+            $login = $_POST['login'];
+            $password = $_POST['password'];
+            if($this->userExist($login, $password) == true) {
+                header('Location: index.php?controller=TodoController&action=getTodoView');
+            }
+            else {
+                $this->signupUser($login, $password);
+            }
+        }
+
+        public function logout() {
+            unset($_SESSION['user_id']);
+            header('Location: index.php?controller=AuthController&action=getForm');
         }
         
-        private function inputNotEmpty() {
-            $isEmpty = true;
-            if(empty($this->login) || empty($this->password)) {
-                $isEmpty = false;
+        private function inputEmpty() {
+            $isEmpty = false;
+            if(empty($_POST['login']) || empty($_POST['password'])) {
+                $isEmpty = true;
             }
             return $isEmpty;
         }

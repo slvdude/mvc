@@ -3,18 +3,21 @@
     header("Content-Type:text/html;charset=UTF-8");
     include 'includes/autoloader.php';
 
-    if($_GET['AuthController']) {
-        $class = trim(strip_tags($_GET['AuthController']));
+    if($_GET['controller']) {
+        $class = trim(strip_tags($_GET['controller']));
+        $action = $_GET['action'];
     }
     else {
-        $class = 'AuthPageContr'; 
+        $class = 'AuthController';
+        $action = 'getForm';	
     }
-
+    
+    
     if(class_exists($class)) {
-		$obj = new $class;
-		$obj->getBody();
-	}
-	else {
-		exit();
-	}
+        $obj = new $class;
+        $obj->$action();
+    }
+    else {
+        exit('Something went wrong...');
+    }
 ?>

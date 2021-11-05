@@ -14,14 +14,14 @@ class Todo extends Dbh {
         return $result;
     }
 
-    public function deleteTodo($id) {
-        $stmt = $this->connect()->prepare('DELETE FROM tasks WHERE id = ?;');
+    public function deleteTodoById($id) {
+        $stmt = $this->connect()->prepare('DELETE FROM tasks WHERE `id` = ?;');
         $stmt->execute(array($id));
     }
 
-    public function deleteAll() {
-        $stmt = $this->connect()->prepare('DELETE FROM tasks;');
-        $stmt->execute();
+    public function deleteTodos($user_id) {
+        $stmt = $this->connect()->prepare('DELETE FROM tasks WHERE `user_id` = ?;');
+        $stmt->execute(array($user_id));
     }
 
     public function getTodos($id) {
@@ -42,8 +42,8 @@ class Todo extends Dbh {
         }
     }
 
-    public function doneAll() {
-        $stmt = $this->connect()->prepare('UPDATE tasks SET status = 1;');
-        $stmt->execute();
+    public function doneAll($user_id) {
+        $stmt = $this->connect()->prepare('UPDATE tasks SET status = 1 WHERE `user_id` = ?');
+        $stmt->execute(array($user_id));
     }
 }

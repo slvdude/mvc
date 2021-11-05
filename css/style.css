@@ -1,3 +1,19 @@
 form {
     text-align: center;
 }
+
+.round {
+    width: 100px;
+    height: 100px;
+    background: #fff;
+    border: 10px solid red;
+    border-radius: 100%;
+}
+
+.done {
+    border: 10px solid rgb(190, 211, 190);
+    width: 100px;
+    height: 100px;
+    background: #fff;
+    border-radius: 100%;
+}
