@@ -98,6 +98,7 @@ body {
     cursor: pointer ; 
 }
 .addTask:hover {
+    transition: 0.5s ease;
     background: #fff;
     color: rgba(74, 105, 189,1.0);
 }
