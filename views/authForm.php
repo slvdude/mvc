@@ -7,5 +7,5 @@
             <button type="submit" name="AuthController" class="authBtn">Sign in</button><br>
         </form>
     </div>
-    <p><?php echo trim(strip_tags($_GET['error']))?></p>
+    <p style="text-align: center; color: red;"><?php echo trim(strip_tags($_GET['error']))?></p>
 </div>
