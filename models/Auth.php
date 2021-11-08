@@ -5,7 +5,7 @@ class Auth extends Dbh {
         $this->conn = $this->connect();
     }
 
-    protected function userExist($login, $password) {
+    public function userExist($login, $password) {
         $stmt = $this->conn->prepare('SELECT * FROM users WHERE login = ? and password = ?;');
         $stmt->execute(array($login, $password));
         $returned_row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -16,7 +16,7 @@ class Auth extends Dbh {
         return $result;
     }
 
-    protected function checkLogin($login) {
+    private function checkLogin($login) {
         $stmt = $this->conn->prepare('SELECT `login` FROM users WHERE login = ?;');
         $stmt->execute(array($login));
         $result = true;
@@ -26,7 +26,7 @@ class Auth extends Dbh {
         return $result;
     }
 
-    protected function setUser($login, $password) {
+    public function setUser($login, $password) {
         $isUserSet = false;
         if($this->checkLogin($login) == true) {
             $stmt = $this->conn->prepare('INSERT INTO users (`login`, `password`) VALUES (?, ?);');

@@ -1,9 +1,13 @@
 <?php
 
-class TodoController extends Todo {
+class TodoController {
     
-    private function getAllTodos($id) {
-        $todoArr = $this->getTodosByUserId($id);
+    function __construct() {
+        $this->todo = new Todo();
+    } 
+
+    public function getAllTodos($id) {
+        $todoArr = $this->todo->getTodosByUserId($id);
         return $todoArr;
     }
 
@@ -15,27 +19,27 @@ class TodoController extends Todo {
 
     public function addTodo() {
         $title = $_POST['title'];
-        $this->createTodo($_SESSION['user_id'], $title);
+        $this->todo->createTodo($_SESSION['user_id'], $title);
         header('Location: index.php?controller=TodoController&action=getTodoView');
     }
 
     public function deleteAllTodos() {
-        $this->deleteTodos($_SESSION['user_id']);
+        $this->todo->deleteTodos($_SESSION['user_id']);
         header('Location: index.php?controller=TodoController&action=getTodoView');
     }
 
     public function doneAllTodos() {
-        $this->doneAll($_SESSION['user_id']);
+        $this->todo->doneAll($_SESSION['user_id']);
         header('Location: index.php?controller=TodoController&action=getTodoView');
     }
 
     public function deleteTodo() {
-        $this->deleteTodoById($_POST['todo_id']);
+        $this->todo->deleteTodoById($_POST['todo_id']);
         header('Location: index.php?controller=TodoController&action=getTodoView');
     }
 
     public function doneTodo() {
-        $this->changeTodoStatus($_POST['todo_id']);
+        $this->todo->changeTodoStatus($_POST['todo_id']);
         header('Location: index.php?controller=TodoController&action=getTodoView');
     }
 }
